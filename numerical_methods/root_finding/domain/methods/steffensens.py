@@ -20,7 +20,7 @@ class SteffensensSolver(RootSolver):
 
         while True:
             fx0 = f(x0)
-            x1 = x0 - f(x0) * f(x0) / (f(x0 + fx0) - fx0)
+            x1 = x0 - fx0 * fx0 / (f(x0 + fx0) - fx0)
 
             iterations += 1
 
