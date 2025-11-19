@@ -1,4 +1,4 @@
-from ..application.dto import ResidualCurveDTO
+from ..application.dto import FunctionAtApproximationsCurveDTO, ResidualCurveDTO
 import matplotlib.pyplot as plt
 
 
@@ -21,6 +21,29 @@ def plot_residual_vs_time(curves: dict[str, ResidualCurveDTO]) -> None:
     ax2.set_ylabel("|f(x)|")
     ax2.grid(True, which="both", linestyle="--", linewidth=0.5)
     ax2.legend()
+
+    plt.tight_layout()
+    plt.show()
+
+
+def plot_f_at_approximations(
+    curves: dict[str, FunctionAtApproximationsCurveDTO],
+) -> None:
+    fig, ax = plt.subplots(figsize=(7, 5))
+
+    for method_name, curve in curves.items():
+        ax.plot(
+            curve.approximations,
+            curve.f_at_approximations,
+            label=method_name,
+            linewidth=2,
+        )
+
+    ax.set_xlabel("Approximation")
+    ax.set_ylabel("f(x_n)")
+    ax.set_title("Function Value at Approximations")
+    ax.grid(True, which="both", linestyle="--", linewidth=0.5)
+    ax.legend()
 
     plt.tight_layout()
     plt.show()
